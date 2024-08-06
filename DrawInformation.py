@@ -1,14 +1,27 @@
+import pygame
+
+
 class DrawInformation:
     BLACK = 0, 0, 0
     WHITE = 255, 255, 255
     GREEN = 0, 255, 0
     RED = 255, 0, 0
-    GREY = 128, 128, 128
     BACKGROUND_COLOR = WHITE
+
+    GRADIENTS = [
+        (128, 128, 128),
+        (160, 160, 160),
+        (192, 192, 192),
+    ]
+
     SIDE_PAD = 100
     TOP_PAD = 150
 
-    def __init__(self, pygame, width, height, lst):
+    def __init__(self, game, width, height, lst):
+
+        self.FONT = game.font.SysFont('comicsans', 20)
+        self.LARGE_FONT = game.font.SysFont('comicsans', 30)
+
         self.width = width
         self.height = height
         self.lst = lst
@@ -19,11 +32,12 @@ class DrawInformation:
         self.start_x = 0
         self.start_y = 0
 
-        self.window = pygame.display.set_mode((width, height))
-        pygame.display.set_caption("Sorting Algorithm Visualizer")
+        self.window = game.display.set_mode((width, height))
+        game.display.set_caption("Sorting Algorithm Visualizer")
         self.set_list(lst)
 
     def set_list(self, lst):
+        self.lst = lst
         self.min_val = min(lst)
         self.max_val = max(lst)
 
